@@ -1,20 +1,13 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "All Blogs";
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
-    </head>
-    <body>
-        <a href="/">Inicio</a>
-        <a href="/about/">Sobre mi</a>
-        <a href="/blog/">blog</a>
-        <h2>Aqui iremos añadiendo blogs que se me ocurran </h2>
-    </body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+    <h2>{pageTitle}, Aqui iremos añadiendo blogs que se me ocurran</h2>
+    <ul>
+        <li><a href="/posts/post-1/">Primera publicacion</a></li>
+        <li><a href="/posts/post-2/">Segundo post</a></li>
+        <li><a href="/posts/post-3/">Tercer post</a></li>
+    </ul>
+</BaseLayout>

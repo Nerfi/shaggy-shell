@@ -1,0 +1,34 @@
+---
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+
+
+const {pageTitle} = Astro.props // asi recibimos los pros del padre 
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{pageTitle}</title>
+    </head>
+    <body>
+        <Header />
+        <h1>My astro web , first time</h1>
+        <!-- La etiqueta <slot /> permite inyectar (o “introducir”) contenido hijo escrito entre las 
+         etiquetas de apertura y 
+         cierre <Component></Component> en cualquier archivo Component.astro 
+         en react seria {children} vaya 
+         -->
+        <slot />
+        <Footer />
+
+        <script>
+            import "../scripts/menu";
+        </script>
+    </body>
+</html>

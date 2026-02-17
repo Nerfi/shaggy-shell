@@ -1,0 +1,25 @@
+---
+import Social from "./Social.astro"
+
+
+const date = new Date().getFullYear();
+const username = "Anonymous";
+const usernameSilly = "Jovi, Bon"
+---
+<style>
+    footer {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        border-top: 2px solid rgb(0, 238, 255);
+        
+    }
+</style>
+
+
+<footer>
+    <Social platform="Github" username={username} />
+    <Social platform="Reddit" username={usernameSilly} />
+
+     <p>Made with love by {username} in {date} &#10084 </p> 
+</footer>

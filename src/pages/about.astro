@@ -1,23 +1,82 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 
+const pageTitle = "Sobre mi";
+
+const identity = {
+    firstName: "Sarah",
+    country: "Canada",
+    occupation: "Escritor tecnico",
+    hobbies: ["fotografia", "observación de aves", "peñarol"],
+};
+
+const skills = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Astro",
+    "Redacción de documentos",
+];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+// variables css
+// const skillColor = "crimson";
+// const fontWeight = "bold";
+// const textCase = "uppercase";
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
-    </head>
-    <body>
-        <a href="/">Inicio</a>
-        <a href="/about/">Sobre mi</a>
-        <a href="/blog/">Blog</a>
-        <h1>Sobre mi</h1>
-        <h2>Mi nuevo sitio astro yuju</h2>
-        <p>Tutorial astro qlql</p>
-        <p>iremoms actualizando esto a medida que vayamos mejorando</p>
-    </body>
-</html>
+
+
+<BaseLayout pageTitle={pageTitle}>
+   
+    <h1>{pageTitle}</h1>
+    <h2>Mi nuevo sitio astro yuju</h2>
+    <p>Tutorial astro qlql</p>
+    <p>iremoms actualizando esto a medida que vayamos mejorando</p>
+
+    <ul>
+        <li>Me llamo {identity.firstName}</li>
+        <li>
+            Vivo en {identity.country} y trabajo como {identity.occupation}
+        </li>
+    </ul>
+
+    <p>Mis habilidades son:</p>
+    <ul>
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+
+    {happy && <p>estoy feliz y aprendiendo ASTRO</p>}
+    {finished && <p>He terminado este tutorial!</p>}
+    {
+        goal === 3 ? (
+            <p>Mi objetivo es terminar en 3 días </p>
+        ) : (
+            <p>mi objetivo no son 3 días</p>
+        )
+    }
+
+    <!-- añadiendo la etiqueta style en el componenten mantenemos los estilos con el scope del componente -->
+
+     <style>
+         .skill {
+        text-transform: uppercase;
+        font-weight: bold;
+        color: crimson;
+    }
+    </style>
+
+    <!-- 
+        El JavaScript de una etiqueta <script> se envía al navegador y 
+        está disponible para ejecutarse en función de las interacciones del usuario,
+
+        como actualizar una página o cambiar una entrada
+         -->
+    <!-- <script>
+            import "../scripts/menu";
+        </script> -->
+</BaseLayout>
