@@ -1,0 +1,12 @@
+---
+//leyendo los props pasados al componente
+
+const {url,title} = Astro.props;
+---
+
+
+<li>
+    <a href={url}>
+        {title}
+    </a>
+</li>

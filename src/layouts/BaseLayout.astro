@@ -18,7 +18,7 @@ const {pageTitle} = Astro.props // asi recibimos los pros del padre
     </head>
     <body>
         <Header />
-        <h1>My astro web , first time</h1>
+        <h1>{pageTitle}</h1>
         <!-- La etiqueta <slot /> permite inyectar (o “introducir”) contenido hijo escrito entre las 
          etiquetas de apertura y 
          cierre <Component></Component> en cualquier archivo Component.astro 

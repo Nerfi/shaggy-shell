@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogPost from "../../components/BlogPost.astro";
+
+export async function getStaticPaths() {
+    // Esta función DEBE devolver un array de objetos
+  // Cada objeto representa una página que se va a genera
+    const allPosts = Object.values(
+        import.meta.glob("../posts/*.md", { eager: true }),
+    );
+
+    return [
+        { params: { tag: "astro" }, props: { posts: allPosts } },
+        { params: { tag: "éxitos" }, props: { posts: allPosts } },
+        { params: { tag: "comunidad" }, props: { posts: allPosts } },
+        { params: { tag: "bloguear" }, props: { posts: allPosts } },
+        { params: { tag: "contratiempos" }, props: { posts: allPosts } },
+        { params: { tag: "aprender en público" }, props: { posts: allPosts } },
+    ];
+}
+
+// 3. Recuperamos los datos. 
+// 'Astro.params' nos da la URL.
+// 'Astro.props' nos da el objeto completo que pasamos arriba
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+const filteredPosts = posts.filter((post: any) =>
+    post.frontmatter.tags?.includes(tag),
+);
+
+
+---
+
+<BaseLayout pageTitle={tag}>
+    <p>Entradas etiquetadas con {tag}</p>
+    <ul>
+        {
+            filteredPosts.map((post: any) => (
+               <BlogPost url={post.url} title={post.frontmatter.title}/>
+            ))
+        }
+    </ul>
+</BaseLayout>
