@@ -1,13 +1,18 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogPost from "../../components/BlogPost.astro";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
     // Esta función DEBE devolver un array de objetos
   // Cada objeto representa una página que se va a genera
-    const allPosts = Object.values(
-        import.meta.glob("../posts/*.md", { eager: true }),
-    );
+
+  // cuando creamos coleccciones(recomendadas para blog) no usamos la variable de abajo sin la siguiente con el mismo nombre
+    // const allPosts = Object.values(
+    //     import.meta.glob("../posts/*.md", { eager: true }),
+    // );
+
+    const allPosts = await getCollection("blog")
 
     return [
         { params: { tag: "astro" }, props: { posts: allPosts } },
@@ -25,7 +30,7 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 const filteredPosts = posts.filter((post: any) =>
-    post.frontmatter.tags?.includes(tag),
+    post.data.tags?.includes(tag),
 );
 
 
@@ -36,7 +41,7 @@ const filteredPosts = posts.filter((post: any) =>
     <ul>
         {
             filteredPosts.map((post: any) => (
-               <BlogPost url={post.url} title={post.frontmatter.title}/>
+               <BlogPost url={`/posts/${post.id}/`} title={post.data.title} />
             ))
         }
     </ul>
